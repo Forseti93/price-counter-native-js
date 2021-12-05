@@ -5,13 +5,16 @@ window.addEventListener("DOMContentLoaded", function () {
     daysInput = document.querySelectorAll(".counter-block-input")[1],
     placeInput = document.getElementById("select"),
     priceOutput = document.getElementById("total"),
+    //values for calculation**
     persons = 0,
     days = 0,
     priceToShow = 0,
     locationPrice = 1,
     // to change according to price 1 day for 1 person.
     //see html -> id="select" -> value="1" to increase costs for other places
-    servicePrice = 2000;
+    servicePrice = 150;
+  //**values for calculation
+
   // function to check input != 0 or ""
   function checkInput() {
     return (
@@ -21,41 +24,48 @@ window.addEventListener("DOMContentLoaded", function () {
       personsInput.value == "0"
     );
   }
+
+  //function to update values for calculation
+  function updateValues() {
+    days = daysInput.value;
+    persons = personsInput.value;
+    locationPrice = placeInput[placeInput.selectedIndex].value;
+    priceToShow = days * persons * servicePrice * locationPrice;
+  }
+
   // change event on persons field
   personsInput.addEventListener("change", function () {
-    persons = +this.value;
-    days = +daysInput.value;
-    locationPrice = placeInput[placeInput.selectedIndex].value;
-    priceToShow = days * persons * servicePrice * locationPrice; //customise price formula
+    updateValues();
     if (checkInput()) {
       priceOutput.innerText = 0;
     } else {
-      priceOutput.innerText = priceToShow;
+      priceOutput.innerText = `${priceToShow}$`;
     }
+    console.log(priceToShow);
     console.log(locationPrice);
   });
+
   // change event on days field
   daysInput.addEventListener("change", function () {
-    days = +this.value;
-    persons = +personsInput.value;
-    locationPrice = placeInput[placeInput.selectedIndex].value;
-    priceToShow = days * persons * servicePrice * locationPrice; //customise price formula
+    updateValues();
     if (checkInput()) {
       priceOutput.innerText = 0;
     } else {
-      priceOutput.innerText = priceToShow;
+      priceOutput.innerText = `${priceToShow}$`;
     }
+    console.log(priceToShow);
     console.log(locationPrice);
   });
+
   // change event on places field
   placeInput.addEventListener("change", function () {
-    locationPrice = this[this.selectedIndex].value;
-    if (checkInput(placeInput)) {
+    updateValues();
+    if (checkInput()) {
       priceOutput.innerText = 0;
     } else {
-      let a = priceToShow;
-      priceOutput.innerText = a * locationPrice;
+      priceOutput.innerText = `${priceToShow}$`;
     }
+    console.log(priceToShow);
     console.log(locationPrice);
   });
   //#endregion
