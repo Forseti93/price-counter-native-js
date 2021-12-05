@@ -33,7 +33,6 @@ window.addEventListener("DOMContentLoaded", function () {
       priceOutput.innerText = priceToShow;
     }
     console.log(locationPrice);
-
   });
   // change event on days field
   daysInput.addEventListener("change", function () {
@@ -47,7 +46,6 @@ window.addEventListener("DOMContentLoaded", function () {
       priceOutput.innerText = priceToShow;
     }
     console.log(locationPrice);
-
   });
   // change event on places field
   placeInput.addEventListener("change", function () {
