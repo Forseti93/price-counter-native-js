@@ -19,6 +19,7 @@ body {
   flex-direction: column;
   border-radius: 10px;
   color: #141829;
+  font-family: 'Montserrat', sans-serif;
 }
 .counter-title {
   font-size: 56px;
